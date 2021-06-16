@@ -52,12 +52,12 @@ def patient_dataset_splitter(df, patient_key='patient_nbr'):
     total_values = len(unique_values)
     
     sample_size = round(total_values * 0.8)
-    train_valid = df[df[patient_key].isin(unique_values[:sample_size])].reset_index(drop=True)
+    train_temp = df[df[patient_key].isin(unique_values[:sample_size])].reset_index(drop=True)
     test = df[df[patient_key].isin(unique_values[sample_size:])].reset_index(drop=True)
     
     train_size = round(sample_size * 0.8)
-    train = train_valid[train_valid[patient_key].isin(unique_values[:train_size])].reset_index(drop=True)
-    validation = train_valid[train_valid[patient_key].isin(unique_values[train_size:])].reset_index(drop=True)
+    train = train_temp[train_temp[patient_key].isin(unique_values[:train_size])].reset_index(drop=True)
+    validation = train_temp[train_temp[patient_key].isin(unique_values[train_size:])].reset_index(drop=True)
  
    
     
