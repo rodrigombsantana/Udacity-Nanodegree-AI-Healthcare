@@ -15,8 +15,9 @@ def reduce_dimension_ndc(df, ndc_df):
     '''
     #use as guidance : https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html
     
-    df=pd.merge(df, ndc_df, left_on=['ndc_code'],right_on=['NDC_Code'])
+    df=pd.merge(df, ndc_df, how ='left', left_on=['ndc_code'],right_on=['NDC_Code'])
     df['generic_drug_name'] = df['Non-proprietary Name']
+    df=df.drop(['ndc_code','NDC_Code'], axis=1)
     return df
 
 #Question 4
